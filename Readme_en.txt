@@ -46,6 +46,8 @@
 			Auto-mode interval multiplier. The minimum is 1 and the default is 2.
 		*GetIntervalMult()[R]
 			Returns current interval multiplier.
+		·SetSafeDamage((float)val)
+			Define the damage when the gun can't fire. Usually set on rifles with a bayonet.
 		*SetOffsetFn((function(count))fn)
 			Set a function of bullets shot in a burst, which returns an offset angle that affects the ballistic model of mode BURST and AUTO. If not set, the offset will be always 0.
 		*SetRange((float)val)
@@ -71,7 +73,7 @@
 		*SetReloadingFn((function(inst, slot))fn)
 			Set a function to execute when starting reload the gun. The argument slot = true when loading a magazine, false when loading a single bullet.
 		*SetReloadedFn((function(inst))fn)
-			Set a function to execute when finishing reload the gun. The argument slot = true when loading a magazine, false when loading a single bullet.
+			Set a function to execute when finishing reload the gun.
 		*SetOnFireFn((function(inst))fn)
 			Set a function to execute when the gun fires.
 		*SetOnSelectorFn((function(inst))fn)

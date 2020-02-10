@@ -29,10 +29,11 @@
 		inspecable, inventoryitem, equippable, weapon
 	在weapon定义段后添加component: gunutils, 并指定基本属性.
 	GunUtils类的主要方法: ([R]表示Client可用, *表示为必需项)
-		·SetAmmoType((string)ammotype)*
+		·SetAmmoType((string)ammotype)
 			指定使用的弹药类型, 必须为TUNING.MGUNAMMOTYPES的子项.
-		·SetGunBullets((string)ammotype)*
+		·SetGunBullets((string)ammotype)
 			指定使用弹药的子弹类型, 必须为TUNING.MGUNBULLETTYPES的子项.注意: 装填不同属性的单发子弹将改变枪内所有子弹的属性. 避免在同一枪械上使用不同属性的多种弹药, 除非最大弹量为1.
+			*此二项必须至少设定其中之一.
 		·SetCanSingle((Bool)val)
 		·SetCanBurst((Bool)val)
 		·SetCanAuto((Bool)val)
@@ -46,6 +47,8 @@
 			指定全自动射击的射击间隔倍数, 最小为1, 默认为2.
 		·GetIntervalMult()[R]
 			获取当前射击模式下的射击间隔倍数.
+		·SetSafeDamage((float)val)
+			指定无法击发时的近战伤害, 默认和锤子相同. 此值可用于一些有刺刀的枪械.
 		·SetOffsetFn((function(count))fn)
 			指定弹道发散角度关于一次连发或自动射击的射出子弹数的函数, 返回的角度值将用来设定连发和自动模式的弹道偏移, 若不指定则弹道永不偏移.
 		·SetRange((float)val)
@@ -69,9 +72,9 @@
 		·SetEmptiedFn((function(inst))fn)
 			指定一个函数在枪械弹药耗尽时执行.
 		·SetReloadingFn((function(inst, slot))fn)
-			指定一个函数在枪械开始装弹时执行. 多用来播放装弹音效.slot参数为true时代表装入的是弹匣, 否则为单发子弹.
+			指定一个函数在枪械开始装弹时执行. 多用来播放装弹音效. slot参数为true时代表装入的是弹匣, 否则为单发子弹.
 		·SetReloadedFn((function(inst))fn)
-			指定一个函数在枪械装弹完成时执行. 多用来播放装弹音效.slot参数为true时代表装入的是弹匣, 否则为单发子弹.
+			指定一个函数在枪械装弹完成时执行. 多用来播放装弹音效.
 		·SetOnFireFn((function(inst))fn)
 			指定一个函数在枪械开火时执行. 多用来播放开火音效.
 		·SetOnSelectorFn((function(inst))fn)

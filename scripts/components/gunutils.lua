@@ -105,6 +105,7 @@ local GunUtils = Class(function(self, inst)
 	self.range = 15
 	self.autointervalmult = 2
 	self.semiintervalmult = 6
+	self.safedamage = TUNING.HAMMER_DAMAGE
 	self.infinite = false
 	self.lastammo = nil
 	self.reloadingfn = nil
@@ -237,6 +238,10 @@ function GunUtils:GetIntervalMult()
 	return self.selector == 3 and self.autointervalmult or self.selector == 2 and self.semiintervalmult or self.selector == 1 and self.semiintervalmult or nil
 end
 
+function GunUtils:SetSafeDamage(val)
+	self.safedamage = val
+end
+
 function GunUtils:SetOffsetFn(fn)
 	self.offsetfn = fn
 end
@@ -303,7 +308,7 @@ function GunUtils:Emptied()
 		self.inst.components.weapon:SetRange(0)
 		self.inst:RemoveTag("mgun")
 		self.inst:AddTag("spear")
-		self.inst.components.weapon:SetDamage(TUNING.HAMMER_DAMAGE)
+		self.inst.components.weapon:SetDamage(self.safedamage)
 		if self.selector ~= 0 and self.emptiedfn ~= nil then
 			self.emptiedfn(self.inst)
 		end
@@ -347,7 +352,7 @@ function GunUtils:Reload(ammo)
 		self.inst.components.weapon:SetRange(0)
 		self.inst:RemoveTag("mgun")
 		self.inst:AddTag("spear")
-		self.inst.components.weapon:SetDamage(TUNING.HAMMER_DAMAGE)
+		self.inst.components.weapon:SetDamage(self.safedamage)
 		if ammo.components.gunammo then
 			if self.lastammo then
 				local owner = self.inst.components.inventoryitem and self.inst.components.inventoryitem:GetGrandOwner()

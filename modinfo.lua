@@ -1,7 +1,7 @@
 name = "GunUtils"
-version = "1.2.0.2"
+version = "1.3.0.1"
 description = [[
-通用枪械API(GunUtils API) 1.2
+通用枪械API(GunUtils API) 1.3
 
 ※MOD制作初心者
 ※大量API修改, 兼容性注意
